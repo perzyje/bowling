@@ -13,6 +13,8 @@ public class Player {
     //===============Variables  
     private final String NAME; 
     private final int TOTAL_PINS = 10; //number of pin in a frame
+    private final int STANDARD_GAME = 10; //number of frames in a standard game 
+    private final int MAX_FRAMES = 11; //maximum frames in a game
     private ArrayList<Frame> game = new ArrayList<Frame>(); //Array of frame objects
     private int frameCount = 0; 
     private int strikeCount = 0; 
@@ -34,12 +36,44 @@ public class Player {
         //Check that the total number of pins recorded are 
         //equal to or less than the total number of pins 
         //per frame
-        if (ballOne + ballTwo <= TOTAL_PINS)
+        
+        if (ballOne + ballTwo <= TOTAL_PINS && game.size() <= MAX_FRAMES)
         {
             //add a valid frame to the game array
             Frame currentFrame = new Frame(ballOne, ballTwo); 
-            game.add(currentFrame); 
-            frameCount++; //increment the frame count 
+           
+            /*DESIGN NOTE :G.KOEHL 
+             * Using the array size to indicate the 10th frame instead of
+             * using the element index to make more natural to the game 
+            */
+            
+            //First condition will add properly formated frames to the game array
+            //during the course of a standard game. 10 frames of bowling
+            if (game.size() <= STANDARD_GAME)
+                {
+                    game.add(currentFrame); 
+                    frameCount++; //increment the frame count 
+                }
+            else if (game.size() == MAX_FRAMES && currentFrame.isSpare())
+                
+                {
+                    //conditions for a spare in the last frame of Standard Game
+                }
+            else if (game.size() == MAX_FRAMES && currentFrame.isStrike())
+                {
+                    //conditions for a strike in the last frame Standard Game 
+                }
+            //catch any attempt to add addition frames beyond STANDARD_GAME 
+            //if the th
+            else  
+            {
+                System.out.println("Game Over, no more frames can be added.");
+            }
+        }
+        //catch invalid input 
+        else 
+        {
+            System.out.println("A problem occurred. Frame could not be added"); 
         }
     
     }//eomethod addFrame
