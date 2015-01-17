@@ -9,12 +9,14 @@ package bowling;
  *
  * @author 
  */
-public class Bowling {
+public class Bowling 
+{
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         // TODO code application logic here
         BowlingDemo(); //run the bowling demo 
         
@@ -28,7 +30,8 @@ public class Bowling {
      * This will populate a full game of bowling that can be used to further 
      * test scoring and other implementations  
      */
-    private static void BowlingDemo(){
+    private static void BowlingDemo()
+    {
     
         Player me = new Player("DemoPlayer"); 
         
